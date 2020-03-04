@@ -1,6 +1,29 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form (ngSubmit)="onSubmit()" [formGroup]="projectForm">
+        <div class="form-group">
+            <label>Project Name</label>
+            <input type="text" class="form-control" formControlName="projectName">
+            <span class="text-danger" *ngIf="projectForm.get('projectName').errors?.errorInvalidProjectName">Invalid project name!</span>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" class="form-control" formControlName="email">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <select formControlName="status" class="form-control">
+            <option value="Stable">Stable</option>
+            <option value="Critical">Critical</option>
+            <option value="Finished">Finished</option>
+          </select>
+        </div>
+        <div class="btn btn-toolbar">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-default" (click)="onReset()">Reset</button>
+        </div>
+      </form>
       <!--
           Create a Form with the following Controls and Validators
           1) Project Name (should not be empty)
